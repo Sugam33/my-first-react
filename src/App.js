@@ -25,7 +25,7 @@ function App() {
           Learn React {person.name}
         </a>
       </header>
-      <FirstComponent/>
+      <FirstComponent name = {'Sugam'} message = {'how are you?'}/>
       <p>{person.name} is {person.age} years old and is {person.married ? 'marrried' : 'unmarried'}</p>
       {scores.map((a) => (<h1 style={{color : 'red'}}>{a}</h1>))}
     </div>

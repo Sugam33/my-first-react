@@ -1,7 +1,7 @@
 import React from "react";
 
-const FirstComponent = () => {
-    return(<p>Hello</p>)
+const FirstComponent = (props) => {
+    return(<p>Hello {props.name}, {props.message}</p>)
 }
 
 export default FirstComponent
