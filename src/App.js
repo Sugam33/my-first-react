@@ -1,14 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
-import FirstComponent from './components/FirstComponent';
+import logo from "./logo.svg";
+import "./App.css";
+import FirstComponent from "./components/FirstComponent";
 
 function App() {
   const person = {
-    name : "Sugam",
-    age : 23,
-    married : true
-  }
-  const scores = [10, 12, 12, 20]
+    name: "Sugam",
+    age: 23,
+    married: true,
+  };
+  const scores = [10, 12, 12, 20];
+  const persons = [
+    { name: "Sugam", message: "Hello" },
+    { name: "Aditi", message: "Hi" },
+    { name: "Suyog", message: "Bye" },
+  ];
   return (
     <div className="App">
       <header className="App-header">
@@ -25,9 +30,16 @@ function App() {
           Learn React {person.name}
         </a>
       </header>
-      <FirstComponent name = {'Sugam'} message = {'how are you?'}/>
-      <p>{person.name} is {person.age} years old and is {person.married ? 'marrried' : 'unmarried'}</p>
-      {scores.map((a) => (<h1 style={{color : 'red'}}>{a}</h1>))}
+      <FirstComponent name={"Sugam"} message={"how are you?"} />
+      {persons.map((p) => (<FirstComponent key = {p.name} name = {p.name} message = {p.message}/>))}
+      <p>
+        {person.name} is {person.age} years old and is{" "}
+        {person.married ? "marrried" : "unmarried"}
+      </p>
+      {scores.map((a) => (
+        <h1 style={{ color: "red" }}>{a}</h1>
+      ))}
+      
     </div>
   );
 }
