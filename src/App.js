@@ -1,8 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
 import FirstComponent from "./components/FirstComponent";
+import Counter from "./components/Counter";
 
 function App() {
+  
   const person = {
     name: "Sugam",
     age: 23,
@@ -10,12 +12,15 @@ function App() {
   };
   const scores = [10, 12, 12, 20];
   const persons = [
-    { name: "Sugam", message: "Hello" },
+    { name: "Sugam Dai", message: "Hello" },
     { name: "Aditi", message: "Hi" },
     { name: "Suyog", message: "Bye" },
   ];
+  
   return (
+    
     <div className="App">
+       <Counter/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -30,6 +35,7 @@ function App() {
           Learn React {person.name}
         </a>
       </header>
+    
       <FirstComponent name={"Sugam"} message={"how are you?"} />
       {persons.map((p) => (<FirstComponent key = {p.name} name = {p.name} message = {p.message}/>))}
       <p>
@@ -39,7 +45,7 @@ function App() {
       {scores.map((a) => (
         <h1 style={{ color: "red" }}>{a}</h1>
       ))}
-      
+       
     </div>
   );
 }
