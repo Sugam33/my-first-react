@@ -8,7 +8,7 @@ const Counter = () => {
         <div>
             <AiOutlinePlusCircle size={30} color ={'green'} onClick = {() => setCount(count + 1)}/>
             <h1>{count}</h1> 
-            <AiOutlineMinusCircle size={30} color ={'red'} onClick = {() => setCount(count - 1)}/>
+            <AiOutlineMinusCircle size={30} color ={'red'} onClick = {() => setCount(count > 0 ? count - 1 : count)}/>
         </div>
     )
 }
