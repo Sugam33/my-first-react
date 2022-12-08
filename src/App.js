@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import FirstComponent from "./components/FirstComponent";
 import Counter from "./components/Counter";
+import CarsList from "./components/CarsList";
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
     
     <div className="App">
        <Counter/>
+      <CarsList />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
