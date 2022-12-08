@@ -1,38 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { CARS } from "../constants";
+import { BiEdit } from "react-icons/bi"
+
 
 const CarsList = () => {
-    const CARS = [
-        {
-            id : 1,
-            brand : "tesla",
-            model : "teslaX",
-            price : 2000
-        },
-    
-        {
-            id : 2,
-            brand : "lamborghini",
-            model : "Lambo",
-            price : 1000
-        },
-    
-        {
-            id : 3,
-            brand : "mercedez",
-            model : "mercedezbenz",
-            price : 3000
-        },
-    
-        {
-            id : 4,
-            brand : "bentley",
-            model : "bentley22",
-            price : 4000
-        },
-    ];
+    const [cars, setCars] = useState(CARS)
+    const [brand, setBrand] = useState("")
+    const [model, setModel] = useState("")
+    const [price, setPrice] = useState("")
+
+ 
+  const [selectedCar, setSelectedCar] = useState({})
+  const [editState, setEditState] = useState(false)
+
+    const deleteCar = (givenId) => {
+       setCars(cars.filter((car) => car.id !== givenId ))
+    }
+
+    const addCar  = () => {
+        setCars([...cars, {id: new Date().getTime(), brand, model, price}])
+        setBrand("")
+        setModel("")
+        setPrice("")
+    }
+
+    const handleEditCar = (car) => {
+        setBrand(car.brand)
+        setModel(car.model)
+        setPrice(car.price)
+        setSelectedCar(car)
+        setEditState(true)
+    }
+
+    const updateCar = () => {
+        setCars(cars.map((car) => car.id === selectedCar.id ? {...car, brand, model, price} : car))
+        setEditState(false)
+        setSelectedCar(null)
+        setBrand("")
+        setModel("")
+        setPrice("")
+    }
+
 
    return (<div>
-        {CARS.map((car, i , arr) => <div className="entry" key = {car.id}>
+        {cars.map((car, i , arr) => <div className="entry" key = {car.id}>
              <div>
                 <span>{i + 1}</span>
             </div>
@@ -45,11 +56,41 @@ const CarsList = () => {
             <div>
                 <span>{car.price}</span>
             </div>
+            <div>
+                <BiEdit onClick={() => handleEditCar(car)}/> 
+            </div>
             {/* <div>
                 <span>{arr[i - 1]?.price}</span>
             </div> */}
+            <div>
+                <button onClick={() => deleteCar(car.id)}>X</button>
+            </div>
             </div>)}
+
+            <div className="entry">
+             <div>
+                {/* <span>{i + 1}</span> */}
+            </div>
+            <div>
+                <input value={brand} onChange = {(e) => setBrand(e.target.value)}/>
+            </div>
+            <div>
+                <input value={model} onChange = {(e) => setModel(e.target.value)}/>
+            </div>
+            <div>
+                <input value={price} type = 'number' onChange = {(e) => setPrice(e.target.value)}/>
+            </div>
+            {/* <div>
+                <span>{arr[i - 1]?.price}</span>
+            </div> */}
+            <div>
+                <button onClick={() => editState ? updateCar() : addCar()}>{editState ? "Update" : "Add"}</button>
+            </div>
+            {/* <h1>{brand}</h1>
+            <h1>{price}</h1> */}
+            </div>
    </div>)
+   
 }
 
 export default CarsList;
