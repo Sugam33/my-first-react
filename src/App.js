@@ -28,8 +28,8 @@ function App() {
   
    <div className="App">
     
-    <button onClick={() => setSelectedList("carslist")}>Cars List</button>
-    <button onClick={() => setSelectedList("productslist")}>Products List</button>
+    <button className= {selectedList === 'carslist' ? 'selected' : ''} onClick={() => setSelectedList("carslist")}>Cars List</button>&nbsp;
+    <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button>
       <ToastContainer />
       
       {selectedList === "carslist" && <CarsList/>}

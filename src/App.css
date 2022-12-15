@@ -95,5 +95,9 @@ td {
   width: 400px;
   margin: 5px auto;
   padding: 0;
-  
+}
+
+.selected {
+  background-color: black;
+  color: whitesmoke;
 }
