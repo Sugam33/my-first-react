@@ -7,7 +7,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductList from "./components/productsList";
 import { useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, NavLink } from "react-router-dom";
+// import { menuListCSS } from "react-select/dist/declarations/src/components/Menu";
 
 
 
@@ -24,14 +25,54 @@ function App() {
     { name: "Aditi", message: "Hi" },
     { name: "Suyog", message: "Bye" },
   ];
+
+const LISTS = [
+    {
+      name: "carslist",
+      title: "Cars List",
+      component: (key) => <CarsList key={key} />,
+      path: "/cars",
+    },
+    {
+      name: "productslist",
+      title: "Products List",
+      component: (key) => <ProductList key={key} />,
+      path: "/productlist",
+    },
+    {
+      name: "todolist",
+      title: "ToDo List",
+      component: (key) => <Counter key={key} />,
+      path: "/counter",
+    },
+    {
+      name: "incomelist",
+      title: "Income List",
+      component: (key) => <h1 key={key}>Income List namuna </h1>,
+      path: "/income",
+    },
+  ];
+
   const [selectedList, setSelectedList] = useState("")
   return (
   
    <div className="App">
     
-    <button className= {selectedList === 'carslist' ? 'selected' : ''} onClick={() => setSelectedList("carslist")}>Cars List</button>&nbsp;
-    <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button>
+    {/* <button className= {selectedList === 'carslist' ? 'selected' : ''} onClick={() => setSelectedList("carslist")}>Cars List</button>&nbsp;
+    <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button> */}
       <ToastContainer />
+    <div>
+      {LISTS.map((list) => (
+        <NavLink 
+        key={list.name}
+        className = "link"
+        to = {list.path}>
+          {list.title}
+        </NavLink>
+      ))}
+    </div>
+
+
       <Routes>
         <Route path = "/" element = {<CarsList />} />
         <Route path = "cars" element = {<CarsList />} />
