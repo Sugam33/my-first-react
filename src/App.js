@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductList from "./components/productsList";
 import { useState } from "react";
+import { Route, Routes } from "react-router-dom";
 
 
 
@@ -31,6 +32,12 @@ function App() {
     <button className= {selectedList === 'carslist' ? 'selected' : ''} onClick={() => setSelectedList("carslist")}>Cars List</button>&nbsp;
     <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button>
       <ToastContainer />
+      <Routes>
+        <Route path = "/" element = {<CarsList />} />
+        <Route path = "cars" element = {<CarsList />} />
+        <Route path = "productlist" element = {<ProductList />} />
+        <Route path = "*" element = {<div><h1>404 NOT FOUND</h1></div>} />
+      </Routes>
       
       {selectedList === "carslist" && <CarsList/>}
       {selectedList === "productslist" &&<ProductList />}
