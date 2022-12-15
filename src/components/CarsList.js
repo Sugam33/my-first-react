@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { CARS } from "../constants";
 import { BiEdit } from "react-icons/bi"
+import { ToastContainer, toast } from 'react-toastify';
+import Select from 'react-select'
 
 
 const CarsList = () => {
@@ -9,19 +11,27 @@ const CarsList = () => {
     const [model, setModel] = useState("")
     const [price, setPrice] = useState("")
 
- 
   const [selectedCar, setSelectedCar] = useState({})
   const [editState, setEditState] = useState(false)
 
+  const brandRef = useRef(null)
+  const modelRef = useRef(null)
+  const priceRef = useRef(null)
+
     const deleteCar = (givenId) => {
-       setCars(cars.filter((car) => car.id !== givenId ))
+       setCars(cars.filter((car) => car.id !== givenId))
+       toast.warning("Car Deleted Successfully")
     }
 
     const addCar  = () => {
+        if(brand === '' || model === '' || price === ''){
+            toast.warn("Fill the Details Properly")
+        }
         setCars([...cars, {id: new Date().getTime(), brand, model, price}])
         setBrand("")
         setModel("")
         setPrice("")
+        toast.warning("Car Added Successfully")
     }
 
     const handleEditCar = (car) => {
@@ -30,6 +40,7 @@ const CarsList = () => {
         setPrice(car.price)
         setSelectedCar(car)
         setEditState(true)
+        toast.info("Update the Details")
     }
 
     const updateCar = () => {
@@ -39,6 +50,16 @@ const CarsList = () => {
         setBrand("")
         setModel("")
         setPrice("")
+        toast.info("Car Updated Successfully")
+    }
+
+    const handleCancel = () => {
+        setBrand("")
+        setModel("")
+        setPrice("")
+        setEditState(false)
+        setSelectedCar(null)
+        toast.info("Cancelled")
     }
 
 
@@ -72,23 +93,29 @@ const CarsList = () => {
                 {/* <span>{i + 1}</span> */}
             </div>
             <div>
-                <input value={brand} onChange = {(e) => setBrand(e.target.value)}/>
+                <input value={brand} ref = {brandRef} onKeyDown = {(e) => e.code === "Enter" ? modelRef?.current?.focus() : void 0}  onChange = {(e) => setBrand(e.target.value)}/>
             </div>
             <div>
-                <input value={model} onChange = {(e) => setModel(e.target.value)}/>
+                <input value={model} ref = {modelRef} onKeyDown = {(e) => e.code === "Enter" ? priceRef?.current.focus() : void 0}  onChange = {(e) => setModel(e.target.value)}/>
             </div>
             <div>
-                <input value={price} type = 'number' onChange = {(e) => setPrice(e.target.value)}/>
+                <input value={price} ref = {priceRef} onKeyDown = {(e) => e.code === "Enter" ? (editState ? updateCar() : addCar()) : void 0} type = 'number' onChange = {(e) => setPrice(e.target.value)}/>
             </div>
-            {/* <div>
-                <span>{arr[i - 1]?.price}</span>
-            </div> */}
+           
             <div>
                 <button onClick={() => editState ? updateCar() : addCar()}>{editState ? "Update" : "Add"}</button>
             </div>
-            {/* <h1>{brand}</h1>
-            <h1>{price}</h1> */}
+            { editState && (
+            <div>
+                <button onClick={() => handleCancel()}>Cancel</button>
             </div>
+            )
+            }  
+           
+            </div>
+            <h1>total</h1> 
+            <h1>{cars.reduce((a,v) => a + +v.price, 0)}</h1>  
+            <Select options={cars.map((car) => ({...car, value: car.id, label: `${car.brand}, ${car.model}, ${car.price}` }))} />
    </div>)
    
 }

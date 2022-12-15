@@ -3,6 +3,12 @@ import "./App.css";
 import FirstComponent from "./components/FirstComponent";
 import Counter from "./components/Counter";
 import CarsList from "./components/CarsList";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ProductList from "./components/productsList";
+import { useState } from "react";
+
+
 
 function App() {
   
@@ -17,12 +23,18 @@ function App() {
     { name: "Aditi", message: "Hi" },
     { name: "Suyog", message: "Bye" },
   ];
-  
+  const [selectedList, setSelectedList] = useState("")
   return (
+  
+   <div className="App">
     
-    <div className="App">
-       <Counter/>
-      <CarsList />
+    <button onClick={() => setSelectedList("carslist")}>Cars List</button>
+    <button onClick={() => setSelectedList("productslist")}>Products List</button>
+      <ToastContainer />
+      
+      {selectedList === "carslist" && <CarsList/>}
+      {selectedList === "productslist" &&<ProductList />}
+   
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
