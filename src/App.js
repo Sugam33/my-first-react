@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import ProductList from "./components/productsList";
 import { useState } from "react";
 import { Route, Routes, NavLink } from "react-router-dom";
+import styled from "styled-components";
 // import { menuListCSS } from "react-select/dist/declarations/src/components/Menu";
 
 
@@ -25,6 +26,15 @@ function App() {
     { name: "Aditi", message: "Hi" },
     { name: "Suyog", message: "Bye" },
   ];
+  const StyledDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  padding: 30px 10px;
+  min-height: 100vh;
+  border-right: 1px solid #cccccc;
+  `;
+
 
 const LISTS = [
     {
@@ -80,9 +90,9 @@ const LISTS = [
         <Route path = "*" element = {<div><h1>404 NOT FOUND</h1></div>} />
       </Routes>
       
-      {selectedList === "carslist" && <CarsList/>}
-      {selectedList === "productslist" &&<ProductList />}
-   
+      {/* {selectedList === "carslist" && <CarsList/>}
+      {selectedList === "productslist" && <ProductList/>}
+    */}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
