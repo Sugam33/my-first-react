@@ -26,6 +26,7 @@ function App() {
     { name: "Aditi", message: "Hi" },
     { name: "Suyog", message: "Bye" },
   ];
+  
   const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
