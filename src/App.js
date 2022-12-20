@@ -41,25 +41,25 @@ const LISTS = [
     {
       name: "carslist",
       title: "Cars List",
-      component: (key) => <CarsList key={key} />,
+     // component: (key) => <CarsList key={key} />,
       path: "/cars",
     },
     {
       name: "productslist",
       title: "Products List",
-      component: (key) => <ProductList key={key} />,
+     // component: (key) => <ProductList key={key} />,
       path: "/productlist",
     },
     {
       name: "counter",
       title: "Counter",
-      component: (key) => <Counter key={key} />,
+     // component: (key) => <Counter key={key} />,
       path: "/counter",
     },
     {
       name: "incomelist",
       title: "Income List",
-      component: (key) => <h1 key={key}>Income List namuna </h1>,
+    //  component: (key) => <h1 key={key}>Income List namuna </h1>,
       path: "/income",
     },
   ];
