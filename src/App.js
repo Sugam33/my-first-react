@@ -73,7 +73,7 @@ const LISTS = [
     <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button> */}
       <ToastContainer />
       <div className={"container"}>
-    <div className= {"sidebar"}>
+      <StyledDiv>
        {LISTS.map((list) => (
         <NavLink
         key = {list.name}
@@ -83,7 +83,7 @@ const LISTS = [
           {list.title}
           </NavLink>
       ))}
-    </div>
+    </StyledDiv>
 
         <div style={{width : "100%"}}>
       <Routes>
