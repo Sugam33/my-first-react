@@ -97,7 +97,29 @@ td {
   padding: 0;
 }
 
-.selected {
+.link{
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 20px 0;
+}
+
+.active, .selected {
   background-color: black;
   color: whitesmoke;
+
+}
+
+.sidebar{
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  margin: 30px 10px;
+  min-height: 100vh;
+  border-right: 1px solid #cccccc;
+}
+
+.container{
+  width: 100%;
+  display: flex;
 }

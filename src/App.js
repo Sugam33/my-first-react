@@ -7,7 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ProductList from "./components/productsList";
 import { useState } from "react";
-import { Route, Routes, NavLink } from "react-router-dom";
+import { Route, Routes, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
 // import { menuListCSS } from "react-select/dist/declarations/src/components/Menu";
 
@@ -26,7 +26,7 @@ function App() {
     { name: "Aditi", message: "Hi" },
     { name: "Suyog", message: "Bye" },
   ];
-  
+
   const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,8 +51,8 @@ const LISTS = [
       path: "/productlist",
     },
     {
-      name: "todolist",
-      title: "ToDo List",
+      name: "counter",
+      title: "Counter",
       component: (key) => <Counter key={key} />,
       path: "/counter",
     },
@@ -72,29 +72,32 @@ const LISTS = [
     {/* <button className= {selectedList === 'carslist' ? 'selected' : ''} onClick={() => setSelectedList("carslist")}>Cars List</button>&nbsp;
     <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button> */}
       <ToastContainer />
-    <div>
-      {LISTS.map((list) => (
-        <NavLink 
-        key={list.name}
-        className = "link"
-        to = {list.path}>
+      <div className={"container"}>
+    <div className= {"sidebar"}>
+       {LISTS.map((list) => (
+        <NavLink
+        key = {list.name}
+        className = {"link"}
+        to = {list.path}
+        >
           {list.title}
-        </NavLink>
+          </NavLink>
       ))}
     </div>
 
-
+        <div style={{width : "100%"}}>
       <Routes>
         <Route path = "/" element = {<CarsList />} />
         <Route path = "cars" element = {<CarsList />} />
         <Route path = "productlist" element = {<ProductList />} />
+        <Route path = "counter" element = {<Counter />} />
         <Route path = "*" element = {<div><h1>404 NOT FOUND</h1></div>} />
       </Routes>
-      
+      </div>
       {/* {selectedList === "carslist" && <CarsList/>}
       {selectedList === "productslist" && <ProductList/>}
     */}
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -107,9 +110,9 @@ const LISTS = [
         >
           Learn React {person.name}
         </a>
-      </header>
+      </header> */}
     
-      <FirstComponent name={"Sugam"} message={"how are you?"} />
+      {/* <FirstComponent name={"Sugam"} message={"how are you?"} />
       {persons.map((p) => (<FirstComponent key = {p.name} name = {p.name} message = {p.message}/>))}
       <p>
         {person.name} is {person.age} years old and is{" "}
@@ -117,8 +120,8 @@ const LISTS = [
       </p>
       {scores.map((a) => (
         <h1 style={{ color: "red" }}>{a}</h1>
-      ))}
-       
+      ))} */}
+       </div>
     </div>
       
   );
