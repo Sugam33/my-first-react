@@ -103,6 +103,14 @@ td {
   border-radius: 5px;
   margin: 20px 0;
   transition: 0.5s all;
+  display: flex;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
+.end-flexed{
+  justify-content: space-between;
+  size: 20px;
 }
 
 .link:hover{
@@ -118,14 +126,14 @@ td {
   background-color: black;
 }
 
-.sidebar{
+/* .sidebar{
   display: flex;
   flex-direction: column;
   width: 180px;
   margin: 30px 10px;
   min-height: 100vh;
   border-right: 1px solid #cccccc;
-}
+} */
 
 .container{
   width: 100%;

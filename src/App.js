@@ -9,8 +9,9 @@ import ProductList from "./components/productsList";
 import { useState } from "react";
 import { Route, Routes, NavLink, Link } from "react-router-dom";
 import styled from "styled-components";
-// import { menuListCSS } from "react-select/dist/declarations/src/components/Menu";
-
+import { RiBillLine } from "react-icons/ri";
+import { BsListCheck } from "react-icons/bs";
+import { GiTakeMyMoney, GiCarWheel, GiHamburgerMenu  } from "react-icons/gi";
 
 
 function App() {
@@ -30,10 +31,12 @@ function App() {
   const StyledDiv = styled.div`
   display: flex;
   flex-direction: column;
-  width: 180px;
+  width: ${({width}) => width || 280}px;
   padding: 30px 10px;
   min-height: 100vh;
   border-right: 1px solid #cccccc;
+  margin-left: 10px;
+
   `;
 
 
@@ -43,28 +46,33 @@ const LISTS = [
       title: "Cars List",
      // component: (key) => <CarsList key={key} />,
       path: "/cars",
+      icon: <GiCarWheel color={"red"} size={30}/>
     },
     {
       name: "productslist",
       title: "Products List",
      // component: (key) => <ProductList key={key} />,
       path: "/productlist",
+      icon: <RiBillLine color={"red"} size={30}/>
     },
     {
       name: "counter",
       title: "Counter",
      // component: (key) => <Counter key={key} />,
       path: "/counter",
+      icon: <BsListCheck color={"red"} size={30}/>
     },
     {
       name: "incomelist",
       title: "Income List",
     //  component: (key) => <h1 key={key}>Income List namuna </h1>,
       path: "/income",
+      icon: <GiTakeMyMoney color={"red"} size={30}/>
     },
   ];
 
-  const [selectedList, setSelectedList] = useState("")
+ // const [selectedList, setSelectedList] = useState("")
+ const [expanded, setExpanded] = useState(true)
   return (
   
    <div className="App">
@@ -73,14 +81,18 @@ const LISTS = [
     <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button> */}
       <ToastContainer />
       <div className={"container"}>
-      <StyledDiv>
+      <StyledDiv width={expanded ? 280 : 40}>
+        <div className={"link end-flexed"}>
+         {expanded && <span>Sort List</span>} <GiHamburgerMenu size={30} onClick={(e) => setExpanded(!expanded)}/>
+        </div>
        {LISTS.map((list) => (
         <NavLink
         key = {list.name}
         className = {"link"}
         to = {list.path}
         >
-          {list.title}
+         {list.icon}
+          {expanded && <span>{list.title}</span>}
           </NavLink>
       ))}
     </StyledDiv>
