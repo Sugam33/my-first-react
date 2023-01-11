@@ -12,21 +12,22 @@ import styled from "styled-components";
 import { RiBillLine } from "react-icons/ri";
 import { BsListCheck } from "react-icons/bs";
 import { GiTakeMyMoney, GiCarWheel, GiHamburgerMenu  } from "react-icons/gi";
+import ProductsList2 from "./components/ProductsList2";
 
 
 function App() {
   
-  const person = {
-    name: "Sugam",
-    age: 23,
-    married: true,
-  };
-  const scores = [10, 12, 12, 20];
-  const persons = [
-    { name: "Sugam Dai", message: "Hello" },
-    { name: "Aditi", message: "Hi" },
-    { name: "Suyog", message: "Bye" },
-  ];
+  // const person = {
+  //   name: "Sugam",
+  //   age: 23,
+  //   married: true,
+  // };
+  // const scores = [10, 12, 12, 20];
+  // const persons = [
+  //   { name: "Sugam Dai", message: "Hello" },
+  //   { name: "Aditi", message: "Hi" },
+  //   { name: "Suyog", message: "Bye" },
+  // ];
 
   const StyledDiv = styled.div`
   display: flex;
@@ -69,6 +70,13 @@ const LISTS = [
       path: "/income",
       icon: <GiTakeMyMoney color={"red"} size={30}/>
     },
+    {
+      name: "productslist2",
+      title: "Products List 2",
+     // component: (key) => <ProductList key={key} />,
+      path: "/pl2",
+      icon: <RiBillLine color={"red"} size={30}/>
+    },
   ];
 
  // const [selectedList, setSelectedList] = useState("")
@@ -81,7 +89,7 @@ const LISTS = [
     <button className={selectedList === 'productslist' ? 'selected' : ''} onClick={() => setSelectedList("productslist")}>Products List</button> */}
       <ToastContainer />
       <div className={"container"}>
-      <StyledDiv width={expanded ? 280 : 40}>
+      <StyledDiv width={expanded ? 280 : 120}>
         <div className={"link end-flexed"}>
          {expanded && <span>Sort List</span>} <GiHamburgerMenu size={30} onClick={(e) => setExpanded(!expanded)}/>
         </div>
@@ -102,6 +110,7 @@ const LISTS = [
         <Route path = "/" element = {<CarsList />} />
         <Route path = "cars" element = {<CarsList />} />
         <Route path = "productlist" element = {<ProductList />} />
+        <Route path = "pl2" element = {<ProductsList2 />} />
         <Route path = "counter" element = {<Counter />} />
         <Route path = "*" element = {<div><h1>404 NOT FOUND</h1></div>} />
       </Routes>
